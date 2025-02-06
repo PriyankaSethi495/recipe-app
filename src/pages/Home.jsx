@@ -64,7 +64,8 @@ const Home = () => {
     fetchMeals();
   }, [searchTerm, category, area]);
 
-  const handleSearch = (term) => {
+
+  const handleSearchSubmit = (term) => {
     setSearchTerm(term);
     setCategory('All');
     setArea('All');
@@ -91,11 +92,13 @@ const Home = () => {
   return (
     <div className="home">
       <h1 className="main-heading">Kitchen Quest: Unleash Your Inner Chef Today</h1>
-      <SearchBar onSearch={handleSearch} />
-      <FilterPanel 
+      <SearchBar onSearchSubmit={handleSearchSubmit} initialValue={searchTerm} />
+      <FilterPanel
         availableCategories={availableCategories}
         availableAreas={availableAreas}
-        onCategoryChange={handleCategoryChange} 
+        selectedCategory={category}
+        selectedArea={area}
+        onCategoryChange={handleCategoryChange}
         onAreaChange={handleAreaChange}
       />
       <div className="meal-container">
