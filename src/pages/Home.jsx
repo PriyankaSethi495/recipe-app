@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RecipeCard from '../components/RecipeCard';
 import SearchBar from '../components/SearchBar';
 import FilterPanel from '../components/FilterPanel';
+import Spinner from '../components/Spinner';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -62,7 +63,7 @@ const Home = () => {
     setCategory(cat);
   };
 
-  if (loading) return <div>Loading recipes...</div>;
+  if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
 
   return (
