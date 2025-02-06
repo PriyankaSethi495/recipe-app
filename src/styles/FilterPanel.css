@@ -1,17 +1,20 @@
 .filter-panel {
     margin: 20px 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
   }
   
   .filter-panel label {
-    margin-right: 10px;
+    margin-right: 5px;
     font-size: 1rem;
   }
   
   .filter-panel select {
     padding: 8px;
     font-size: 1rem;
-    border: 1px solid #9102aa;
+    border: 1px solid #ccc;
     border-radius: 4px;
   }
   
