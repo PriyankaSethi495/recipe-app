@@ -7,6 +7,7 @@ import '../styles/home.css';
 
 const Home = () => {
   const [meals, setMeals] = useState([]);
+  const [rawMeals, setRawMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,7 +43,9 @@ const Home = () => {
     setLoading(true);
     setError('');
     try {
-      let results = await fetchAllMeals();
+      const raw = await fetchAllMeals();
+      setRawMeals(raw);
+      let results = raw;
       if (category !== 'All') {
         results = results.filter(meal => meal.strCategory === category);
       }
@@ -63,6 +66,8 @@ const Home = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
+    setCategory('All');
+    setArea('All');
   };
 
   const handleCategoryChange = (cat) => {
@@ -73,6 +78,13 @@ const Home = () => {
     setArea(selectedArea);
   };
 
+  const availableCategories = Array.from(
+    new Set(rawMeals.map(meal => meal.strCategory).filter(Boolean))
+  );
+  const availableAreas = Array.from(
+    new Set(rawMeals.map(meal => meal.strArea).filter(Boolean))
+  );
+
   if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
 
@@ -80,7 +92,12 @@ const Home = () => {
     <div className="home">
       <h1 className="main-heading">Kitchen Quest: Unleash Your Inner Chef Today</h1>
       <SearchBar onSearch={handleSearch} />
-      <FilterPanel onCategoryChange={handleCategoryChange} onAreaChange={handleAreaChange} />
+      <FilterPanel 
+        availableCategories={availableCategories}
+        availableAreas={availableAreas}
+        onCategoryChange={handleCategoryChange} 
+        onAreaChange={handleAreaChange}
+      />
       <div className="meal-container">
         {meals.map((meal) => (
           <RecipeCard key={meal.idMeal} meal={meal} />
