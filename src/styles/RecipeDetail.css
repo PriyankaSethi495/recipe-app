@@ -24,13 +24,14 @@
     background-color: #333;
     padding: 20px;
     border-radius: 8px;
+    border-color: #9102aa78;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .recipe-info h2 {
     margin-top: 20px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid #9102aa85;
     padding-bottom: 5px;
     font-size: 1.75rem;
   }
