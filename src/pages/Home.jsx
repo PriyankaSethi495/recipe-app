@@ -28,7 +28,9 @@ const Home = () => {
             break;
           }
         }
-        return nameMatch || categoryMatch || ingredientMatch;
+        const tagMatch = meal.strTags && meal.strTags.toLowerCase().includes(lowerSearch);
+        const areaMatch = meal.strArea && meal.strArea.toLowerCase().includes(lowerSearch);
+        return nameMatch || categoryMatch || ingredientMatch || tagMatch || areaMatch;
       });
       return filtered;
     }
