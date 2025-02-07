@@ -20,9 +20,7 @@ const FilterPanel = ({
         >
           <option value="All">All</option>
           {availableCategories.map((cat, index) => (
-            <option key={index} value={cat}>
-              {cat}
-            </option>
+            <option key={index} value={cat}>{cat}</option>
           ))}
         </select>
       </div>
@@ -35,9 +33,7 @@ const FilterPanel = ({
         >
           <option value="All">All</option>
           {availableAreas.map((area, index) => (
-            <option key={index} value={area}>
-              {area}
-            </option>
+            <option key={index} value={area}>{area}</option>
           ))}
         </select>
       </div>
