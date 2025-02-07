@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import '../styles/RecipeDetail.css';
 
 const RecipeDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [meal, setMeal] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -31,7 +32,6 @@ const RecipeDetail = () => {
   if (error) return <div>Error: {error}</div>;
   if (!meal) return <div>No recipe found.</div>;
 
-  // Extract ingredients
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     const ingredient = meal[`strIngredient${i}`];
@@ -43,6 +43,9 @@ const RecipeDetail = () => {
 
   return (
     <div className="recipe-detail">
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ← Back
+      </button>
       <h1 className="main-heading">{meal.strMeal}</h1>
       <div className="detail-content">
         <img src={meal.strMealThumb} alt={meal.strMeal} className="detail-image" />
