@@ -20,5 +20,20 @@
     height: auto;
     border-radius: 4px;
     margin-bottom: 8px;
-  }
+  } 
   
+.favorite-btn {
+  padding: 8px 12px;
+  background-color: #9102aa78;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.favorite-btn:hover {
+  background-color: #c687d178;
+}
