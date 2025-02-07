@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import RecipeCard from './RecipeCard';
 import '../styles/FavoritesPopup.css';
 
+//Show/close popup of favourites
 const FavoritesPopup = ({ onClose }) => {
+  //get items from redux store
   const favorites = useSelector((state) => state.favorites.items);
 
   return (

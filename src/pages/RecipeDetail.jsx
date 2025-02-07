@@ -10,12 +10,15 @@ const RecipeDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  //Fetch the recipe details initially or when the ID changes
   useEffect(() => {
     const fetchMealDetail = async () => {
       setLoading(true);
       try {
+        //Fetch recipe details using the ID
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
         const data = await response.json();
+        // If recipes are found, set the first as the current recipe
         if (data.meals) {
           setMeal(data.meals[0]);
         }
@@ -32,6 +35,7 @@ const RecipeDetail = () => {
   if (error) return <div>Error: {error}</div>;
   if (!meal) return <div>No recipe found.</div>;
 
+  // Getting ingredients list with measures
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     const ingredient = meal[`strIngredient${i}`];
@@ -43,6 +47,7 @@ const RecipeDetail = () => {
 
   return (
     <div className="recipe-detail">
+      {/*Button to navigate back to the previous page*/}
       <button className="back-button" onClick={() => navigate(-1)}>
         ← Back
       </button>

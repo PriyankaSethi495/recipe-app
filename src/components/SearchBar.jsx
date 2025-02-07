@@ -4,10 +4,12 @@ import '../styles/SearchBar.css';
 const SearchBar = ({ onSearchSubmit, initialValue = '' }) => {
   const [inputValue, setInputValue] = useState(initialValue);
 
+  // Update state with the current input value
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
 
+  // Search with the current input value
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearchSubmit(inputValue);

@@ -16,6 +16,7 @@ const Home = () => {
   const [selectedArea, setSelectedArea] = useState('All');
   const [showFavorites, setShowFavorites] = useState(false);
 
+   //Fetch all recipes and filter based on search term
   const fetchAllMeals = async () => {
     const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const data = await res.json();
@@ -41,6 +42,7 @@ const Home = () => {
     return [];
   };
 
+  //Fetch recipes and apply category/area filters
   const fetchMeals = async () => {
     setLoading(true);
     setError('');
@@ -62,6 +64,7 @@ const Home = () => {
     }
   };
 
+  //Fetch recipes initially and when filters change
   useEffect(() => {
     fetchMeals();
   }, [searchTerm, selectedCategory, selectedArea]);
@@ -72,6 +75,7 @@ const Home = () => {
     setSelectedArea('All');
   };
 
+  //Get available categories based on current filters
   const availableCategories = Array.from(
     new Set(
       rawMeals
@@ -80,6 +84,8 @@ const Home = () => {
         .filter(Boolean)
     )
   );
+
+  //Get available areas based on current filters
   const availableAreas = Array.from(
     new Set(
       rawMeals
@@ -89,10 +95,12 @@ const Home = () => {
     )
   );
 
+  //Handle category change
   const handleCategoryChange = (cat) => {
     setSelectedCategory(cat);
   };
 
+  //Handle area change
   const handleAreaChange = (area) => {
     setSelectedArea(area);
   };

@@ -9,11 +9,13 @@ const RecipeCard = ({ meal }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
   const isFavorite = favorites.find((item) => item.idMeal === meal.idMeal);
-
+  
+  // Navigate to the recipe detail page
   const handleClick = () => {
     navigate(`/recipe/${meal.idMeal}`);
   };
 
+  // Toggle favorite/unfavorite
   const toggleFavorite = (e) => {
     e.stopPropagation();
     if (isFavorite) {
@@ -23,6 +25,7 @@ const RecipeCard = ({ meal }) => {
     }
   };
 
+  //Handle unavailable instructions
   const instructions = meal.strInstructions 
     ? meal.strInstructions.substring(0, 100)
     : 'No instructions available. Click for details.';
